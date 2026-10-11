@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import { SITE } from '../data/site.js';
+import Cabecera from '../components/Cabecera.astro';
+import Pie from '../components/Pie.astro';
+
+const { titulo, descripcion } = Astro.props;
+const tituloFinal = titulo ? `${titulo} · ${SITE.nombre}` : `${SITE.nombre} · ${SITE.lema}`;
+const desc = descripcion || SITE.descripcion;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloFinal}</title>
+    <meta name="description" content={desc} />
+    <meta property="og:title" content={tituloFinal} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body>
+    <Cabecera />
+    <main>
+      <slot />
+    </main>
+    <Pie />
+  </body>
+</html>

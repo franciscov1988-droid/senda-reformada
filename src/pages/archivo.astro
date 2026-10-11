@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TarjetaEntrada from '../components/TarjetaEntrada.astro';
+import { todasLasEntradas } from '../data/contenido.js';
+
+const entradas = await todasLasEntradas();
+
+// Agrupa por año para un archivo histórico claro.
+const porAnio = new Map();
+for (const e of entradas) {
+  const anio = e.data.pubDate.getFullYear();
+  if (!porAnio.has(anio)) porAnio.set(anio, []);
+  porAnio.get(anio).push(e);
+}
+const anios = [...porAnio.keys()].sort((a, b) => b - a);
+---
+<BaseLayout titulo="Archivo" descripcion="Todas las publicaciones de Senda Reformada.">
+  <div class="contenedor seccion">
+    <div class="encabezado-pagina">
+      <h1 style="margin-top:0">Archivo</h1>
+      <p class="subtitulo">
+        {entradas.length} {entradas.length === 1 ? 'publicación' : 'publicaciones'} en total.
+      </p>
+    </div>
+
+    {anios.length > 0 ? (
+      anios.map((anio) => (
+        <section class="grupo-tematica">
+          <div class="titulo-tematica">
+            <h2>{anio}</h2>
+            <span style="color:var(--texto-suave);font-size:0.85rem">{porAnio.get(anio).length}</span>
+          </div>
+          <div class="lista-entradas">
+            {porAnio.get(anio).map((e) => <TarjetaEntrada entrada={e} mostrarSeccion={true} />)}
+          </div>
+        </section>
+      ))
+    ) : (
+      <p class="vacio">Todavía no hay publicaciones.</p>
+    )}
+  </div>
+</BaseLayout>

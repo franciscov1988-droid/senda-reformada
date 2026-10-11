@@ -1,0 +1,62 @@
+---
+import { SITE, REDES, SECCIONES } from '../data/site.js';
+import { tematicasDeSeccion } from '../data/contenido.js';
+import IconoRed from './IconoRed.astro';
+
+// Construye el menú de cada sección con sus temáticas (calculadas del contenido).
+const menus = await Promise.all(
+  SECCIONES.map(async (s) => ({
+    ...s,
+    tematicas: await tematicasDeSeccion(s.id),
+  }))
+);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+---
+<header class="cabecera">
+  <div class="cabecera-inner">
+    <div class="marca">
+      <a href={u('/')}>
+        <span class="marca-nombre">{SITE.nombre}</span>
+        <span class="marca-lema">{SITE.lema}</span>
+      </a>
+    </div>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a href={u('/')}>Inicio</a>
+
+      {menus.map((m) => (
+        <div class="nav-grupo">
+          <button type="button" aria-haspopup="true">{m.nombre} ▾</button>
+          <div class="nav-menu">
+            <a href={u(`/${m.id}`)} class="nav-menu-titulo-enlace">
+              <span class="nav-menu-titulo">Ver todo en {m.nombre}</span>
+            </a>
+            {m.tematicas.length > 0 ? (
+              m.tematicas.map((t) => (
+                <a href={u(`/${m.id}/tema/${t.slug}`)}>
+                  <span>{t.nombre}</span>
+                  <span class="conteo">{t.cantidad}</span>
+                </a>
+              ))
+            ) : (
+              <span class="nav-menu-titulo">Aún sin temáticas</span>
+            )}
+          </div>
+        </div>
+      ))}
+
+      <a href={u('/archivo')}>Archivo</a>
+      <a href={u('/acerca')}>Acerca de</a>
+    </nav>
+
+    <div class="redes-cabecera">
+      {REDES.slice(0, 4).map((r) => (
+        <a class="red-enlace" href={r.url} title={r.nombre} target="_blank" rel="noopener noreferrer">
+          <IconoRed nombre={r.icono} />
+        </a>
+      ))}
+    </div>
+  </div>
+</header>

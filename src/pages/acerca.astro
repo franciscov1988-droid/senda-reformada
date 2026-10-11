@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, REDES } from '../data/site.js';
+import IconoRed from '../components/IconoRed.astro';
+---
+<BaseLayout titulo="Acerca de" descripcion={`Acerca de ${SITE.nombre}`}>
+  <div class="contenedor seccion seccion-estrecha">
+    <div class="encabezado-pagina">
+      <h1 style="margin-top:0">Acerca de {SITE.nombre}</h1>
+      <p class="subtitulo">{SITE.lema}</p>
+    </div>
+
+    <div class="prosa" style="font-size:1.1rem">
+      <p>
+        <strong>{SITE.nombre}</strong> es un espacio dedicado a la publicación de
+        artículos cristianos de corte reformado, devocionales y estudios bíblicos,
+        con el deseo de edificar a la iglesia en la sana doctrina y el amor a las
+        Escrituras.
+      </p>
+      <p>
+        <!-- Edita este texto con tu propia presentación: quién eres, el propósito
+             del sitio y lo que el lector encontrará aquí. -->
+        Aquí hallarás contenido organizado en dos grandes áreas:
+        <strong>Devocionales</strong>, pensados para la lectura diaria y la meditación
+        breve, y <strong>Artículos</strong>, que profundizan en la doctrina, la
+        exposición bíblica y la reflexión cristiana.
+      </p>
+      <blockquote>
+        «Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir,
+        para corregir, para instruir en justicia». — 2 Timoteo 3:16
+      </blockquote>
+    </div>
+
+    <h2>Síguenos</h2>
+    <div class="redes" style="justify-content:flex-start">
+      {REDES.map((r) => (
+        <a class="red-enlace" href={r.url} title={r.nombre} target="_blank" rel="noopener noreferrer">
+          <IconoRed nombre={r.icono} />
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

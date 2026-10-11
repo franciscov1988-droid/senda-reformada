@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatearFecha, aSlug } from '../../data/contenido.js';
+import { SITE } from '../../data/site.js';
+
+export async function getStaticPaths() {
+  const entradas = await getCollection('articulos', ({ data }) => !data.draft);
+  return entradas.map((e) => ({ params: { slug: e.id }, props: { entrada: e } }));
+}
+
+const { entrada } = Astro.props;
+const { Content } = await render(entrada);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+const temaSlug = aSlug(entrada.data.categoria);
+const autor = entrada.data.author || SITE.autor;
+---
+<BaseLayout titulo={entrada.data.title} descripcion={entrada.data.description}>
+  <article class="articulo">
+    <div class="articulo-cabecera">
+      <p class="migas">
+        <a href={u('/')}>Inicio</a> ·
+        <a href={u('/articulos')}>Artículos</a>
+      </p>
+      <a class="chip" href={u(`/articulos/tema/${temaSlug}`)}>{entrada.data.categoria}</a>
+      <h1>{entrada.data.title}</h1>
+      <div class="meta">
+        <span>{formatearFecha(entrada.data.pubDate)}</span>
+        <span>·</span>
+        <span>{autor}</span>
+      </div>
+    </div>
+
+    <div class="prosa">
+      <Content />
+    </div>
+
+    <a class="volver" href={u('/articulos')}>← Volver a Artículos</a>
+  </article>
+</BaseLayout>

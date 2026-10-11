@@ -1,0 +1,33 @@
+---
+import { SITE, REDES } from '../data/site.js';
+import IconoRed from './IconoRed.astro';
+
+const anio = new Date().getFullYear();
+const rango = anio > SITE.anioInicio ? `${SITE.anioInicio}–${anio}` : `${anio}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+---
+<footer class="pie">
+  <div class="pie-inner">
+    <div class="pie-nombre">{SITE.nombre}</div>
+    <p class="pie-legal" style="max-width:30rem;margin:0">{SITE.lema}</p>
+
+    <div class="redes">
+      {REDES.map((r) => (
+        <a class="red-enlace" href={r.url} title={r.nombre} target="_blank" rel="noopener noreferrer">
+          <IconoRed nombre={r.icono} />
+        </a>
+      ))}
+    </div>
+
+    <nav class="pie-legal" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+      <a href={u('/')}>Inicio</a>
+      <a href={u('/devocionales')}>Devocionales</a>
+      <a href={u('/articulos')}>Artículos</a>
+      <a href={u('/archivo')}>Archivo</a>
+      <a href={u('/acerca')}>Acerca de</a>
+    </nav>
+
+    <p class="pie-legal">© {rango} {SITE.nombre}. «Soli Deo Gloria».</p>
+  </div>
+</footer>

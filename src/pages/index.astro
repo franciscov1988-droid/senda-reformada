@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TarjetaEntrada from '../components/TarjetaEntrada.astro';
+import { SITE, SECCIONES } from '../data/site.js';
+import { todasLasEntradas, entradasDeSeccion } from '../data/contenido.js';
+
+const recientes = (await todasLasEntradas()).slice(0, 6);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+
+// Últimas 3 de cada sección para los bloques inferiores
+const porSeccion = await Promise.all(
+  SECCIONES.map(async (s) => ({
+    ...s,
+    entradas: (await entradasDeSeccion(s.id)).slice(0, 3),
+  }))
+);
+---
+<BaseLayout>
+  <section class="hero">
+    <h1>{SITE.nombre}</h1>
+    <p>{SITE.lema}. {SITE.descripcion}</p>
+    <div class="hero-botones">
+      <a class="boton boton-primario" href={u('/devocionales')}>Devocionales</a>
+      <a class="boton boton-secundario" href={u('/articulos')}>Artículos</a>
+    </div>
+  </section>
+
+  <div class="contenedor seccion">
+    <div class="encabezado-pagina">
+      <h2 style="margin-top:0">Lo más reciente</h2>
+    </div>
+
+    {recientes.length > 0 ? (
+      <div class="lista-entradas">
+        {recientes.map((e) => <TarjetaEntrada entrada={e} mostrarSeccion={true} />)}
+      </div>
+    ) : (
+      <p class="vacio">Todavía no hay publicaciones. ¡Pronto habrá contenido!</p>
+    )}
+
+    {porSeccion.map((s) =>
+      s.entradas.length > 0 ? (
+        <div class="grupo-tematica" style="margin-top:2.6rem">
+          <div class="titulo-tematica">
+            <h2>{s.nombre}</h2>
+            <a href={u(`/${s.id}`)}>Ver todo →</a>
+          </div>
+          <p style="color:var(--texto-suave);margin-top:-0.6rem">{s.descripcion}</p>
+          <div class="lista-entradas">
+            {s.entradas.map((e) => <TarjetaEntrada entrada={e} />)}
+          </div>
+        </div>
+      ) : null
+    )}
+  </div>
+</BaseLayout>
