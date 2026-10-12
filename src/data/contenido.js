@@ -1,5 +1,19 @@
 import { getCollection } from 'astro:content';
 
+// Resuelve la ruta de una imagen de portada.
+// - Si es una URL completa (http...), se usa tal cual.
+// - Si es un nombre de archivo (ej. "portada.jpg"), se busca en
+//   public/imagenes/ anteponiendo la ruta base del sitio.
+export function rutaImagen(imagen) {
+  if (!imagen) return null;
+  if (/^https?:\/\//i.test(imagen)) return imagen;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const limpio = imagen.replace(/^\/+/, ''); // quita barras iniciales
+  // Si ya viene con "imagenes/", no lo dupliques.
+  const ruta = limpio.startsWith('imagenes/') ? limpio : `imagenes/${limpio}`;
+  return `${base}/${ruta}`;
+}
+
 // Convierte un texto en "slug" seguro para URL:
 // "Doctrina Reformada" -> "doctrina-reformada"
 export function aSlug(texto) {

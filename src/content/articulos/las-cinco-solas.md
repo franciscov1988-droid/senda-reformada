@@ -3,6 +3,8 @@ title: "Las cinco solas de la Reforma"
 description: "Un recorrido breve por los cinco principios que resumen el corazón de la fe reformada."
 pubDate: 2026-10-09
 categoria: "Doctrina reformada"
+imagen: "ejemplo.svg"
+imagenAlt: "Las cinco solas de la Reforma"
 ---
 
 Cuando hablamos de la Reforma protestante del siglo XVI, cinco expresiones en
@@ -38,6 +40,8 @@ otro sacrificio, ni otra intercesión que nos acerque al Padre.
 Todo lo anterior tiene un fin último: la gloria de Dios. Si la salvación fuera
 en parte nuestra, la gloria sería en parte nuestra. Pero como es toda suya, la
 gloria le pertenece por completo.
+
+![Ejemplo de imagen dentro del texto](/senda-reformada/imagenes/ejemplo.svg)
 
 ---
 

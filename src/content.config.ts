@@ -11,6 +11,12 @@ const esquema = z.object({
   categoria: z.string(),
   author: z.string().optional(),
   draft: z.boolean().optional().default(false),
+  // Imagen destacada (portada) de la entrada. Opcional.
+  // Puede ser el nombre de un archivo guardado en public/imagenes/
+  // (ej. "portada.jpg") o una URL completa (ej. "https://...").
+  imagen: z.string().optional(),
+  // Texto alternativo de la imagen (para accesibilidad y SEO).
+  imagenAlt: z.string().optional().default(''),
 });
 
 const devocionales = defineCollection({

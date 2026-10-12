@@ -1,5 +1,5 @@
 ---
-import { formatearFecha, aSlug } from '../data/contenido.js';
+import { formatearFecha, aSlug, rutaImagen } from '../data/contenido.js';
 import { SECCIONES } from '../data/site.js';
 
 // Muestra una entrada como tarjeta. Si mostrarSeccion=true, indica
@@ -11,13 +11,21 @@ const u = (ruta) => `${base}${ruta}`;
 const seccionNombre =
   SECCIONES.find((s) => s.id === entrada.seccion)?.nombre || entrada.seccion;
 const temaSlug = aSlug(entrada.data.categoria);
+const portada = rutaImagen(entrada.data.imagen);
 ---
-<article class="tarjeta">
-  <div class="meta">
-    <a class="chip" href={u(`/${entrada.seccion}/tema/${temaSlug}`)}>{entrada.data.categoria}</a>
-    {mostrarSeccion && <span class="seccion-etiqueta">{seccionNombre}</span>}
-    <span class="fecha">{formatearFecha(entrada.data.pubDate)}</span>
+<article class={`tarjeta${portada ? ' tarjeta-con-imagen' : ''}`}>
+  {portada && (
+    <a href={u(entrada.url)} class="tarjeta-imagen">
+      <img src={portada} alt={entrada.data.imagenAlt || entrada.data.title} loading="lazy" />
+    </a>
+  )}
+  <div class="tarjeta-cuerpo">
+    <div class="meta">
+      <a class="chip" href={u(`/${entrada.seccion}/tema/${temaSlug}`)}>{entrada.data.categoria}</a>
+      {mostrarSeccion && <span class="seccion-etiqueta">{seccionNombre}</span>}
+      <span class="fecha">{formatearFecha(entrada.data.pubDate)}</span>
+    </div>
+    <h3><a href={u(entrada.url)}>{entrada.data.title}</a></h3>
+    {entrada.data.description && <p class="resumen">{entrada.data.description}</p>}
   </div>
-  <h3><a href={u(entrada.url)}>{entrada.data.title}</a></h3>
-  {entrada.data.description && <p class="resumen">{entrada.data.description}</p>}
 </article>

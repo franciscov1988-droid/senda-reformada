@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { formatearFecha, aSlug } from '../../data/contenido.js';
+import { formatearFecha, aSlug, rutaImagen } from '../../data/contenido.js';
 import { SITE } from '../../data/site.js';
 
 export async function getStaticPaths() {
@@ -15,6 +15,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const u = (ruta) => `${base}${ruta}`;
 const temaSlug = aSlug(entrada.data.categoria);
 const autor = entrada.data.author || SITE.autor;
+const portada = rutaImagen(entrada.data.imagen);
 ---
 <BaseLayout titulo={entrada.data.title} descripcion={entrada.data.description}>
   <article class="articulo">
@@ -31,6 +32,13 @@ const autor = entrada.data.author || SITE.autor;
         <span>{autor}</span>
       </div>
     </div>
+
+    {portada && (
+      <figure class="portada-articulo">
+        <img src={portada} alt={entrada.data.imagenAlt || entrada.data.title} />
+        {entrada.data.imagenAlt && <figcaption>{entrada.data.imagenAlt}</figcaption>}
+      </figure>
+    )}
 
     <div class="prosa">
       <Content />
