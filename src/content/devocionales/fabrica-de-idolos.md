@@ -3,6 +3,8 @@ title: "La Fabrica de Idolos"
 description: "el corazón humano y su tendencia natural."
 pubDate: 2026-10-11
 categoria: "Devocionales"
+imagen: "mi-foto.jpg"
+imagenAlt: "Descripción de la imagen"
 ---
 
 **"Estos hombres han puesto sus ídolos en su corazón."
