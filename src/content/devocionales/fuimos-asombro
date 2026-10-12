@@ -1,0 +1,16 @@
+---
+title: "La fe que salva"
+description: "Un resumen corto que aparece en la tarjeta."
+pubDate: 2026-10-11
+categoria: "Doctrina reformada"
+imagen: "mi-foto.jpg"
+imagenAlt: "Descripción de la imagen"
+---
+
+Aquí escribís tu artículo normalmente.
+
+Podés usar **negrita**, títulos con ##, y listas.
+
+
+
+![Una imagen en el texto](/senda-reformada/imagenes/otra-foto.jpg)
