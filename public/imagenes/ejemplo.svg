@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7a2e2e"/>
+      <stop offset="1" stop-color="#3d1717"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g)"/>
+  <text x="600" y="320" font-family="Georgia, serif" font-size="72" font-weight="700"
+        fill="#faf8f4" text-anchor="middle">Senda Reformada</text>
+  <text x="600" y="400" font-family="Georgia, serif" font-size="34" font-style="italic"
+        fill="#e8c9c9" text-anchor="middle">Imagen de ejemplo</text>
+</svg>

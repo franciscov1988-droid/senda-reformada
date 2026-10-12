@@ -1,0 +1,19 @@
+CARPETA DE IMÁGENES — Senda Reformada
+=====================================
+
+Pon aquí las imágenes que quieras usar en tus entradas (jpg, png, webp, svg).
+
+Para usar una imagen como PORTADA de una entrada, en el encabezado del
+archivo .md escribe el nombre del archivo:
+
+    imagen: "mi-foto.jpg"
+    imagenAlt: "Descripción breve de la imagen"
+
+Para usar una imagen DENTRO del texto, escribe en el cuerpo del .md:
+
+    ![Descripción de la imagen](/senda-reformada/imagenes/mi-foto.jpg)
+
+Consejos:
+- Nombres sin espacios ni acentos (usa guiones): "monte-sinai.jpg", no "Monte Sinaí.jpg".
+- Tamaño recomendado para portadas: 1200 x 675 px aprox.
+- Peso: trata de que cada imagen no supere ~300 KB para que el sitio cargue rápido.
