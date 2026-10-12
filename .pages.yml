@@ -1,0 +1,82 @@
+media:
+  input: public/imagenes
+  output: /senda-reformada/imagenes
+
+content:
+  - name: devocionales
+    label: Devocionales
+    type: collection
+    path: src/content/devocionales
+    filename: '{fields.title}.md'
+    view:
+      fields: [title, categoria, pubDate]
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: pubDate
+        label: Fecha de publicación
+        type: date
+        required: true
+      - name: categoria
+        label: Temática (ej. Salmos, Oración, Gracia)
+        type: string
+        required: true
+      - name: description
+        label: Resumen corto (aparece en la tarjeta)
+        type: text
+      - name: imagen
+        label: Imagen de portada (opcional)
+        type: image
+      - name: imagenAlt
+        label: Descripción de la imagen (opcional)
+        type: string
+      - name: author
+        label: Autor (opcional)
+        type: string
+      - name: draft
+        label: Borrador (actívalo para NO publicar todavía)
+        type: boolean
+      - name: body
+        label: Contenido
+        type: rich-text
+
+  - name: articulos
+    label: Artículos
+    type: collection
+    path: src/content/articulos
+    filename: '{fields.title}.md'
+    view:
+      fields: [title, categoria, pubDate]
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: pubDate
+        label: Fecha de publicación
+        type: date
+        required: true
+      - name: categoria
+        label: Temática (ej. Doctrina reformada, Estudios bíblicos)
+        type: string
+        required: true
+      - name: description
+        label: Resumen corto (aparece en la tarjeta)
+        type: text
+      - name: imagen
+        label: Imagen de portada (opcional)
+        type: image
+      - name: imagenAlt
+        label: Descripción de la imagen (opcional)
+        type: string
+      - name: author
+        label: Autor (opcional)
+        type: string
+      - name: draft
+        label: Borrador (actívalo para NO publicar todavía)
+        type: boolean
+      - name: body
+        label: Contenido
+        type: rich-text
