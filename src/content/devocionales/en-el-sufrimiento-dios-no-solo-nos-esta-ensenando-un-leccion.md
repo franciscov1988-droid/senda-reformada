@@ -1,7 +1,7 @@
 ---
 title: "En el Sufrimiento Dios no sólo nos está enseñando un lección "
 pubDate: 2026-10-15
-categoria: "Artículos, sufrimiento "
+categoria: "Artículos "
 description: Dios en el Sufrimiento no sólo nos está enseñando una lección.
 imagen: /senda-reformada/imagenes/AdobeStock_283504421_Feature.jpg
 draft: false
