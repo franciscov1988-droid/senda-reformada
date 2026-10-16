@@ -1,14 +1,14 @@
 ---
 title: Dioses para Cada Época
 pubDate: 2026-10-16
-categoria: idolos,epocas
+categoria: idolos
 description: |
   Los ídolos cambian de forma pero no de naturaleza
 imagen: /senda-reformada/imagenes/photo-1545153996-16c1df09d5ce-1.avif
 author: Paco
 draft: false
 ---
-*"No tendrás dioses ajenos delante de mí."***—***Éxodo 20:3*
+*"No tendrás dioses ajenos delante de mí."*  *Éxodo 20:3*
 
 Cuando la mayoría de personas piensa en los ídolos, tiene en mente estatuas físicas o quizás la estrella del pop del momento. Sin embargo, la adoración tradicional a los ídolos sigue teniendo lugar en muchos lugares del mundo, y la pleitesía interior, la que se rinde dentro del corazón, es universal. Dios dice que los líderes de Israel pusieron sus ídolos en su corazón. Y la respuesta más natural habría sido: "¿Ídolos? ¿Qué ídolos? ¡Yo no veo ningún ídolo!".
 
