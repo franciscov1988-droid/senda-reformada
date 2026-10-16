@@ -17,7 +17,7 @@ const temaSlug = aSlug(entrada.data.categoria);
 const autor = entrada.data.author || SITE.autor;
 const portada = rutaImagen(entrada.data.imagen);
 ---
-<BaseLayout titulo={entrada.data.title} descripcion={entrada.data.description}>
+<BaseLayout titulo={entrada.data.title} descripcion={entrada.data.description} imagen={portada} tipo="article">
   <article class="articulo">
     <div class="articulo-cabecera">
       <p class="migas">
