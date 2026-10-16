@@ -9,8 +9,9 @@ const u = (ruta) => `${base}${ruta}`;
 ---
 <footer class="pie">
   <div class="pie-inner">
+    <img class="pie-logo" src={u('/imagenes/logo.jpg')} alt={`Logo de ${SITE.nombre}`} />
     <div class="pie-nombre">{SITE.nombre}</div>
-    <p class="pie-legal" style="max-width:30rem;margin:0">{SITE.lema}</p>
+    <p class="lema-pie">{SITE.lema}</p>
 
     <div class="redes">
       {REDES.map((r) => (
@@ -20,7 +21,7 @@ const u = (ruta) => `${base}${ruta}`;
       ))}
     </div>
 
-    <nav class="pie-legal" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+    <nav class="pie-nav">
       <a href={u('/')}>Inicio</a>
       <a href={u('/devocionales')}>Devocionales</a>
       <a href={u('/articulos')}>Artículos</a>

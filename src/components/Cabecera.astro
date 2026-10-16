@@ -3,7 +3,6 @@ import { SITE, REDES, SECCIONES } from '../data/site.js';
 import { tematicasDeSeccion } from '../data/contenido.js';
 import IconoRed from './IconoRed.astro';
 
-// Construye el menú de cada sección con sus temáticas (calculadas del contenido).
 const menus = await Promise.all(
   SECCIONES.map(async (s) => ({
     ...s,
@@ -18,21 +17,21 @@ const u = (ruta) => `${base}${ruta}`;
   <div class="cabecera-inner">
     <div class="marca">
       <a href={u('/')}>
-        <span class="marca-nombre">{SITE.nombre}</span>
-        <span class="marca-lema">{SITE.lema}</span>
+        <img class="marca-logo" src={u('/imagenes/logo.jpg')} alt={`Logo de ${SITE.nombre}`} />
+        <span class="marca-texto">
+          <span class="marca-nombre">{SITE.nombre}</span>
+          <span class="marca-lema">{SITE.lema}</span>
+        </span>
       </a>
     </div>
 
     <nav class="nav" aria-label="Navegación principal">
       <a href={u('/')}>Inicio</a>
-
       {menus.map((m) => (
         <div class="nav-grupo">
           <button type="button" aria-haspopup="true">{m.nombre} ▾</button>
           <div class="nav-menu">
-            <a href={u(`/${m.id}`)} class="nav-menu-titulo-enlace">
-              <span class="nav-menu-titulo">Ver todo en {m.nombre}</span>
-            </a>
+            <a href={u(`/${m.id}`)}><span class="nav-menu-titulo">Ver todo en {m.nombre}</span></a>
             {m.tematicas.length > 0 ? (
               m.tematicas.map((t) => (
                 <a href={u(`/${m.id}/tema/${t.slug}`)}>
@@ -46,7 +45,6 @@ const u = (ruta) => `${base}${ruta}`;
           </div>
         </div>
       ))}
-
       <a href={u('/archivo')}>Archivo</a>
       <a href={u('/acerca')}>Acerca de</a>
     </nav>

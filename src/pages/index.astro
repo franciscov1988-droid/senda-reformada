@@ -2,56 +2,119 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TarjetaEntrada from '../components/TarjetaEntrada.astro';
 import { SITE, SECCIONES } from '../data/site.js';
-import { todasLasEntradas, entradasDeSeccion } from '../data/contenido.js';
+import { todasLasEntradas, aSlug, rutaImagen, formatearFecha, tematicasDeSeccion } from '../data/contenido.js';
 
-const recientes = (await todasLasEntradas()).slice(0, 6);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const u = (ruta) => `${base}${ruta}`;
 
-// Últimas 3 de cada sección para los bloques inferiores
-const porSeccion = await Promise.all(
-  SECCIONES.map(async (s) => ({
-    ...s,
-    entradas: (await entradasDeSeccion(s.id)).slice(0, 3),
-  }))
+const todas = await todasLasEntradas();
+const destacado = todas[0] || null;
+const resto = todas.slice(1, 7);
+const reciente = todas.slice(0, 6);
+
+// Temáticas de todas las secciones para la columna lateral
+const temasPorSeccion = await Promise.all(
+  SECCIONES.map(async (s) => ({ ...s, tematicas: await tematicasDeSeccion(s.id) }))
 );
+const temas = temasPorSeccion.flatMap((s) =>
+  s.tematicas.map((t) => ({ ...t, seccion: s.id }))
+);
+
+const portadaDestacado = destacado ? rutaImagen(destacado.data.imagen) : null;
+const autorDestacado = destacado ? (destacado.data.author || SITE.autor) : '';
 ---
 <BaseLayout>
-  <section class="hero">
-    <h1>{SITE.nombre}</h1>
-    <p>{SITE.lema}. {SITE.descripcion}</p>
-    <div class="hero-botones">
-      <a class="boton boton-primario" href={u('/devocionales')}>Devocionales</a>
-      <a class="boton boton-secundario" href={u('/articulos')}>Artículos</a>
-    </div>
-  </section>
+  {destacado ? (
+    <section class="destacado">
+      <div class="destacado-inner">
+        <div class="destacado-texto">
+          <a class="chip" href={u(`/${destacado.seccion}/tema/${aSlug(destacado.data.categoria)}`)}>{destacado.data.categoria}</a>
+          <h1><a href={u(destacado.url)}>{destacado.data.title}</a></h1>
+          {destacado.data.description && <p class="dek">{destacado.data.description}</p>}
+          <p class="firma">Por {autorDestacado} · {formatearFecha(destacado.data.pubDate)}</p>
+        </div>
+        <div class="destacado-imagen">
+          {portadaDestacado
+            ? <img src={portadaDestacado} alt={destacado.data.imagenAlt || destacado.data.title} />
+            : <img src={u('/imagenes/logo.jpg')} alt={SITE.nombre} style="object-fit:contain;padding:2.5rem;background:var(--carbon-suave)" />}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="hero-marca">
+      <img src={u('/imagenes/logo.jpg')} alt={SITE.nombre} />
+      <h1>{SITE.nombre}</h1>
+      <p>{SITE.lema}. {SITE.descripcion}</p>
+      <div class="hero-botones">
+        <a class="boton boton-primario" href={u('/devocionales')}>Devocionales</a>
+        <a class="boton boton-secundario" href={u('/articulos')} style="color:#fff">Artículos</a>
+      </div>
+    </section>
+  )}
 
   <div class="contenedor seccion">
-    <div class="encabezado-pagina">
-      <h2 style="margin-top:0">Lo más reciente</h2>
-    </div>
-
-    {recientes.length > 0 ? (
-      <div class="lista-entradas">
-        {recientes.map((e) => <TarjetaEntrada entrada={e} mostrarSeccion={true} />)}
-      </div>
-    ) : (
-      <p class="vacio">Todavía no hay publicaciones. ¡Pronto habrá contenido!</p>
-    )}
-
-    {porSeccion.map((s) =>
-      s.entradas.length > 0 ? (
-        <div class="grupo-tematica" style="margin-top:2.6rem">
-          <div class="titulo-tematica">
-            <h2>{s.nombre}</h2>
-            <a href={u(`/${s.id}`)}>Ver todo →</a>
-          </div>
-          <p style="color:var(--texto-suave);margin-top:-0.6rem">{s.descripcion}</p>
-          <div class="lista-entradas">
-            {s.entradas.map((e) => <TarjetaEntrada entrada={e} />)}
-          </div>
+    <div class="disposicion">
+      <div>
+        <div class="encabezado-seccion">
+          <h2>Lo más reciente</h2>
+          <a class="ver-mas" href={u('/archivo')}>Ver el archivo</a>
         </div>
-      ) : null
-    )}
+        {resto.length > 0 ? (
+          <div class="lista-entradas doble">
+            {resto.map((e) => <TarjetaEntrada entrada={e} mostrarSeccion={true} />)}
+          </div>
+        ) : (
+          <p class="vacio">Pronto habrá más publicaciones. ¡Vuelve pronto!</p>
+        )}
+
+        {SECCIONES.map((s) => {
+          const deSeccion = todas.filter((e) => e.seccion === s.id).slice(0, 2);
+          return deSeccion.length > 0 ? (
+            <div style="margin-top:2.6rem">
+              <div class="encabezado-seccion">
+                <h2>{s.nombre}</h2>
+                <a class="ver-mas" href={u(`/${s.id}`)}>Ver todo</a>
+              </div>
+              <div class="lista-entradas doble">
+                {deSeccion.map((e) => <TarjetaEntrada entrada={e} />)}
+              </div>
+            </div>
+          ) : null;
+        })}
+      </div>
+
+      <aside class="lateral">
+        <div class="modulo-lateral">
+          <h3>Lo más reciente</h3>
+          {reciente.length > 0 ? (
+            <ol class="lista-reciente">
+              {reciente.map((e) => (
+                <li>
+                  <a href={u(e.url)}>
+                    {e.data.title}
+                    <span class="mini-fecha">{formatearFecha(e.data.pubDate)}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p class="vacio" style="padding:1rem 0">Aún no hay entradas.</p>
+          )}
+        </div>
+
+        {temas.length > 0 && (
+          <div class="modulo-lateral">
+            <h3>Temáticas</h3>
+            <div class="lista-temas">
+              {temas.map((t) => (
+                <a class="tema-pill" href={u(`/${t.seccion}/tema/${t.slug}`)}>
+                  {t.nombre} <span class="n">{t.cantidad}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
   </div>
 </BaseLayout>
