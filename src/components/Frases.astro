@@ -1,0 +1,52 @@
+---
+import frasesData from '../data/frases.json';
+const frases = Array.isArray(frasesData) ? frasesData : (frasesData.frases || []);
+---
+{frases.length > 0 && (
+  <section class="frases" aria-label="Frases">
+    <div class="frases-inner">
+      <span class="frases-comilla" aria-hidden="true">“</span>
+      <blockquote class="frase-texto" id="frase-texto">{frases[0].texto}</blockquote>
+      <cite class="frase-autor" id="frase-autor">{frases[0].autor}</cite>
+    </div>
+    <script type="application/json" id="frases-datos" set:html={JSON.stringify(frases)}></script>
+  </section>
+)}
+
+<script>
+  (function () {
+    const datos = document.getElementById('frases-datos');
+    if (!datos) return;
+    let lista;
+    try { lista = JSON.parse(datos.textContent || '[]'); } catch { return; }
+    if (!Array.isArray(lista) || lista.length === 0) return;
+
+    const elTexto = document.getElementById('frase-texto');
+    const elAutor = document.getElementById('frase-autor');
+    const contenedor = elTexto ? elTexto.closest('.frases-inner') : null;
+    if (!elTexto || !elAutor || !contenedor) return;
+
+    // Empieza en una frase al azar
+    let actual = Math.floor(Math.random() * lista.length);
+    const pintar = (i) => {
+      elTexto.textContent = lista[i].texto;
+      elAutor.textContent = lista[i].autor || '';
+    };
+    pintar(actual);
+
+    if (lista.length < 2) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const siguiente = () => {
+      let i = Math.floor(Math.random() * lista.length);
+      if (i === actual) i = (i + 1) % lista.length; // evita repetir seguida
+      actual = i;
+      if (reduce) { pintar(actual); return; }
+      contenedor.classList.add('frases-oculta');
+      setTimeout(() => { pintar(actual); contenedor.classList.remove('frases-oculta'); }, 450);
+    };
+
+    setInterval(siguiente, 8000);
+  })();
+</script>

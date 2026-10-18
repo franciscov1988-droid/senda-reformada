@@ -225,6 +225,37 @@ a.chip:hover { color: var(--terracota-claro); }
 .hero-marca h1 { color: #fff; margin: 0 0 0.5rem; font-size: clamp(2.3rem, 6vw, 3.4rem); }
 .hero-marca p { color: #d8d1c2; max-width: 36rem; margin: 0 auto; font-size: 1.12rem; }
 
+/* ---------- Frases rotativas ---------- */
+.frases {
+  background: var(--crema-alt);
+  border-top: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde);
+}
+.frases-inner {
+  max-width: 48rem; margin: 0 auto; padding: 2.8rem 1.4rem 2.4rem;
+  text-align: center; position: relative;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.frases-inner.frases-oculta { opacity: 0; transform: translateY(6px); }
+.frases-comilla {
+  display: block; font-family: var(--serif); font-size: 4rem; line-height: 0.6;
+  color: var(--terracota); opacity: 0.55; margin-bottom: 0.6rem;
+}
+.frase-texto {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem); line-height: 1.4;
+  color: var(--tinta); margin: 0 0 1rem; border: none; padding: 0;
+}
+.frase-autor {
+  font-family: var(--sans); font-style: normal; font-weight: 600;
+  font-size: 0.88rem; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--salvia);
+}
+.frase-autor::before { content: '— '; }
+@media (prefers-reduced-motion: reduce) {
+  .frases-inner { transition: none; }
+}
+
 /* ---------- Secciones ---------- */
 .seccion { padding: 2.8rem 0; }
 .seccion-estrecha { max-width: var(--ancho-lectura); }
