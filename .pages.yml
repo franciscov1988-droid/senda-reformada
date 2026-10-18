@@ -3,6 +3,24 @@ media:
   output: /senda-reformada/imagenes
 
 content:
+  - name: frases
+    label: Frases (sección aleatoria)
+    type: file
+    path: src/data/frases.json
+    fields:
+      - name: frases
+        label: Frases
+        type: object
+        list: true
+        fields:
+          - name: texto
+            label: Frase
+            type: text
+            required: true
+          - name: autor
+            label: Autor o referencia (ej. Salmo 46:10)
+            type: string
+
   - name: devocionales
     label: Devocionales
     type: collection
