@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TarjetaEntrada from '../components/TarjetaEntrada.astro';
-import Frases from '../components/Frases.astro';
 import { SITE, SECCIONES } from '../data/site.js';
 import { todasLasEntradas, aSlug, rutaImagen, formatearFecha, tematicasDeSeccion } from '../data/contenido.js';
 
@@ -52,8 +51,6 @@ const autorDestacado = destacado ? (destacado.data.author || SITE.autor) : '';
       </div>
     </section>
   )}
-
-  <Frases />
 
   <div class="contenedor seccion">
     <div class="disposicion">
