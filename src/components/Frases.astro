@@ -3,11 +3,23 @@ import frasesData from '../data/frases.json';
 const frases = Array.isArray(frasesData) ? frasesData : (frasesData.frases || []);
 ---
 {frases.length > 0 && (
-  <section class="frases" aria-label="Frases">
-    <div class="frases-inner">
-      <span class="frases-comilla" aria-hidden="true">“</span>
-      <blockquote class="frase-texto" id="frase-texto">{frases[0].texto}</blockquote>
-      <cite class="frase-autor" id="frase-autor">{frases[0].autor}</cite>
+  <section class="frases" aria-label="Frases" aria-roledescription="carrusel">
+    <div class="frases-wrap">
+      {frases.length > 1 && (
+        <button class="frases-flecha frases-prev" id="frase-prev" type="button" aria-label="Frase anterior">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      )}
+      <div class="frases-inner" id="frases-inner">
+        <span class="frases-comilla" aria-hidden="true">“</span>
+        <blockquote class="frase-texto" id="frase-texto">{frases[0].texto}</blockquote>
+        <cite class="frase-autor" id="frase-autor">{frases[0].autor}</cite>
+      </div>
+      {frases.length > 1 && (
+        <button class="frases-flecha frases-next" id="frase-next" type="button" aria-label="Frase siguiente">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      )}
     </div>
     <script type="application/json" id="frases-datos" set:html={JSON.stringify(frases)}></script>
   </section>
@@ -23,30 +35,38 @@ const frases = Array.isArray(frasesData) ? frasesData : (frasesData.frases || []
 
     const elTexto = document.getElementById('frase-texto');
     const elAutor = document.getElementById('frase-autor');
-    const contenedor = elTexto ? elTexto.closest('.frases-inner') : null;
-    if (!elTexto || !elAutor || !contenedor) return;
+    const inner = document.getElementById('frases-inner');
+    if (!elTexto || !elAutor || !inner) return;
 
-    // Empieza en una frase al azar
-    let actual = Math.floor(Math.random() * lista.length);
+    const n = lista.length;
+    let actual = Math.floor(Math.random() * n); // empieza al azar
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const pintar = (i) => {
       elTexto.textContent = lista[i].texto;
       elAutor.textContent = lista[i].autor || '';
     };
     pintar(actual);
 
-    if (lista.length < 2) return;
-
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const siguiente = () => {
-      let i = Math.floor(Math.random() * lista.length);
-      if (i === actual) i = (i + 1) % lista.length; // evita repetir seguida
-      actual = i;
+    const ir = (i) => {
+      actual = (i + n) % n;
       if (reduce) { pintar(actual); return; }
-      contenedor.classList.add('frases-oculta');
-      setTimeout(() => { pintar(actual); contenedor.classList.remove('frases-oculta'); }, 450);
+      inner.classList.add('frases-oculta');
+      setTimeout(() => { pintar(actual); inner.classList.remove('frases-oculta'); }, 400);
     };
 
-    setInterval(siguiente, 8000);
+    if (n < 2) return;
+
+    const siguiente = () => ir(actual + 1);
+    const anterior = () => ir(actual - 1);
+
+    // Rotación automática, se reinicia al usar las flechas
+    let timer = setInterval(siguiente, 8000);
+    const reiniciar = () => { clearInterval(timer); timer = setInterval(siguiente, 8000); };
+
+    const btnPrev = document.getElementById('frase-prev');
+    const btnNext = document.getElementById('frase-next');
+    if (btnPrev) btnPrev.addEventListener('click', () => { anterior(); reiniciar(); });
+    if (btnNext) btnNext.addEventListener('click', () => { siguiente(); reiniciar(); });
   })();
 </script>
