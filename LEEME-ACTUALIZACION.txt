@@ -1,0 +1,19 @@
+ACTUALIZACIÓN — Paso a dominio propio sendareformada.com
+========================================================
+Este paquete cambia el sitio para que viva en https://sendareformada.com
+(en la raíz, en vez de /senda-reformada).
+
+QUÉ SUBIR (en el repo -> Add file -> Upload files):
+  1) El archivo  astro.config.mjs   (arrastralo a la zona de subida)
+  2) El archivo  .pages.yml
+  3) La carpeta  public   (incluye el archivo CNAME, necesario para el dominio)
+  4) La carpeta  src      (actualiza el manejo de imágenes)
+  Luego: Commit changes.
+
+Es aditivo: NO toca tus artículos.
+
+IMPORTANTE: después de subir esto, el sitio tardará unos minutos en
+quedar disponible en sendareformada.com (mientras GitHub verifica el
+dominio y activa el candado HTTPS). La dirección vieja
+(franciscov1988-droid.github.io/senda-reformada) redirigirá sola al
+nuevo dominio.

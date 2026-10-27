@@ -225,6 +225,56 @@ a.chip:hover { color: var(--terracota-claro); }
 .hero-marca h1 { color: #fff; margin: 0 0 0.5rem; font-size: clamp(2.3rem, 6vw, 3.4rem); }
 .hero-marca p { color: #d8d1c2; max-width: 36rem; margin: 0 auto; font-size: 1.12rem; }
 
+/* ---------- Frases rotativas ---------- */
+.frases {
+  background: var(--crema-alt);
+  border-top: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde);
+}
+.frases-wrap {
+  max-width: 54rem; margin: 0 auto; padding: 0 0.8rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.frases-flecha {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--borde); background: var(--superficie);
+  color: var(--terracota); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.frases-flecha:hover { background: var(--terracota); color: #fff; border-color: var(--terracota); }
+.frases-flecha svg { width: 22px; height: 22px; }
+.frases-inner {
+  flex: 1; min-width: 0; padding: 2.8rem 1rem 2.4rem;
+  text-align: center; position: relative;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.frases-inner.frases-oculta { opacity: 0; transform: translateY(6px); }
+.frases-comilla {
+  display: block; font-family: var(--serif); font-size: 4rem; line-height: 0.6;
+  color: var(--terracota); opacity: 0.55; margin-bottom: 0.6rem;
+}
+.frase-texto {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem); line-height: 1.4;
+  color: var(--tinta); margin: 0 0 1rem; border: none; padding: 0;
+}
+.frase-autor {
+  font-family: var(--sans); font-style: normal; font-weight: 600;
+  font-size: 0.88rem; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--salvia);
+}
+.frase-autor::before { content: '— '; }
+@media (max-width: 560px) {
+  .frases-wrap { gap: 0.1rem; padding: 0 0.3rem; }
+  .frases-flecha { width: 38px; height: 38px; }
+  .frases-flecha svg { width: 19px; height: 19px; }
+  .frases-inner { padding: 2.4rem 0.4rem 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frases-inner { transition: none; }
+}
+
 /* ---------- Secciones ---------- */
 .seccion { padding: 2.8rem 0; }
 .seccion-estrecha { max-width: var(--ancho-lectura); }

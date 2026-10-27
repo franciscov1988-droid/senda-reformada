@@ -24,6 +24,14 @@ export const SITE = {
 };
 
 // =====================================================================
+//  ANALÍTICA — Cloudflare Web Analytics (gratis, sin cookies)
+//  Pegá aquí el "token" que te da Cloudflare al dar de alta tu sitio.
+//  Mientras esté vacío (''), no se carga nada y no pasa nada.
+//  Ejemplo: export const CLOUDFLARE_TOKEN = 'a1b2c3d4e5f6...';
+// =====================================================================
+export const CLOUDFLARE_TOKEN = '9e5d5d1b0a8445e08eeab8fb8679db3f';
+
+// =====================================================================
 //  REDES SOCIALES Y CANALES
 //  Para quitar una red, borra su línea. Para agregar otra, copia una
 //  línea y cambia los datos. El ícono se elige con "icono".

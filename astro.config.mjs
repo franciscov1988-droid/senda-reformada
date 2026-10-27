@@ -2,11 +2,10 @@
 import { defineConfig } from 'astro/config';
 
 // === CONFIGURACIÓN DEL SITIO ===
-// Si en el futuro conectas un dominio propio (ej. sendareformada.com),
-// cambia `site` a 'https://sendareformada.com' y pon `base: '/'`.
+// El sitio ahora vive en el dominio propio sendareformada.com (raíz).
 export default defineConfig({
-  site: 'https://franciscov1988-droid.github.io',
-  base: '/senda-reformada',
+  site: 'https://sendareformada.com',
+  base: '/',
   trailingSlash: 'ignore',
   build: {
     format: 'directory',

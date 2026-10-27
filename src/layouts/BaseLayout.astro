@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE } from '../data/site.js';
+import { SITE, CLOUDFLARE_TOKEN } from '../data/site.js';
 import Cabecera from '../components/Cabecera.astro';
 import Pie from '../components/Pie.astro';
 
@@ -46,6 +46,10 @@ const ogImagen = absolutizar(imagen) || absolutizar(`${base}/imagenes/logo.jpg`)
     <meta name="twitter:title" content={tituloFinal} />
     <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImagen} />
+
+    {CLOUDFLARE_TOKEN && (
+      <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${CLOUDFLARE_TOKEN}"}`}></script>
+    )}
   </head>
   <body>
     <Cabecera />

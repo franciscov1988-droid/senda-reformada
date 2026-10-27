@@ -8,12 +8,15 @@ export function rutaImagen(imagen) {
   if (!imagen) return null;
   // URL completa de internet: se usa tal cual.
   if (/^https?:\/\//i.test(imagen)) return imagen;
-  // Ruta absoluta ya armada (ej. "/senda-reformada/imagenes/foto.jpg",
-  // como la que escribe el panel Pages CMS): se usa tal cual.
-  if (imagen.startsWith('/')) return imagen;
-  // Nombre de archivo suelto (ej. "portada.jpg"): se busca en
-  // public/imagenes/ anteponiendo la ruta base del sitio.
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  // Compatibilidad: rutas guardadas con el prefijo viejo "/senda-reformada/..."
+  // (de cuando el sitio vivía en esa subcarpeta) se reescriben a la base actual.
+  if (imagen.startsWith('/senda-reformada/')) {
+    return `${base}${imagen.slice('/senda-reformada'.length)}`;
+  }
+  // Ruta absoluta ya armada (ej. "/imagenes/foto.jpg"): se usa tal cual.
+  if (imagen.startsWith('/')) return imagen;
+  // Nombre de archivo suelto (ej. "portada.jpg"): se busca en public/imagenes/.
   const ruta = imagen.startsWith('imagenes/') ? imagen : `imagenes/${imagen}`;
   return `${base}/${ruta}`;
 }

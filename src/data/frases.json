@@ -1,41 +1,12 @@
 {
   "frases": [
-    {
-      "texto": "Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.",
-      "autor": "2 Timoteo 3:16"
-    },
-    {
-      "texto": "Estad quietos, y conoced que yo soy Dios.",
-      "autor": "Salmo 46:10"
-    },
-    {
-      "texto": "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.",
-      "autor": "Proverbios 3:5"
-    },
-    {
-      "texto": "Por la gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios.",
-      "autor": "Efesios 2:8"
-    },
-    {
-      "texto": "Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.",
-      "autor": "San Agustín"
-    },
-    {
-      "texto": "El corazón del hombre es una fábrica de ídolos.",
-      "autor": "Juan Calvino"
-    },
-    {
-      "texto": "Un poco de fe llevará tu alma al cielo; mucha fe traerá el cielo a tu alma.",
-      "autor": "Charles H. Spurgeon"
-    },
-    {
-      "texto": "Grande es su fidelidad; nuevas son sus misericordias cada mañana.",
-      "autor": "Lamentaciones 3:23"
-    },
-    {
-      "texto": "No podemos entender completamente a Dios, pero podemos confiar en su carácter perfecto.",
-      "autor": "R.C. Sproul"
-    },
-    {}
+    { "texto": "Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.", "autor": "2 Timoteo 3:16" },
+    { "texto": "Estad quietos, y conoced que yo soy Dios.", "autor": "Salmo 46:10" },
+    { "texto": "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.", "autor": "Proverbios 3:5" },
+    { "texto": "Por la gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios.", "autor": "Efesios 2:8" },
+    { "texto": "Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.", "autor": "San Agustín" },
+    { "texto": "El corazón del hombre es una fábrica de ídolos.", "autor": "Juan Calvino" },
+    { "texto": "Un poco de fe llevará tu alma al cielo; mucha fe traerá el cielo a tu alma.", "autor": "Charles H. Spurgeon" },
+    { "texto": "Grande es su fidelidad; nuevas son sus misericordias cada mañana.", "autor": "Lamentaciones 3:23" }
   ]
 }
