@@ -17,6 +17,10 @@ const esquema = z.object({
   imagen: z.string().optional(),
   // Texto alternativo de la imagen (para accesibilidad y SEO).
   imagenAlt: z.string().optional().default(''),
+  // Marca la entrada como DESTACADA (aparece en "Más leídos").
+  destacado: z.boolean().optional().default(false),
+  // Orden opcional dentro de los destacados (menor = primero).
+  ordenDestacado: z.number().optional(),
 });
 
 const devocionales = defineCollection({

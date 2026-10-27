@@ -1,0 +1,34 @@
+---
+import { SUSCRIPCION } from '../data/site.js';
+import { rutaImagen } from '../data/contenido.js';
+
+const activa = SUSCRIPCION && SUSCRIPCION.activa && SUSCRIPCION.correo;
+const img = activa ? rutaImagen(SUSCRIPCION.imagen) : null;
+const action = activa ? `https://formsubmit.co/${SUSCRIPCION.correo}` : '';
+// A dónde vuelve el visitante tras suscribirse (página del sitio).
+const gracias = Astro.site ? new URL('/gracias', Astro.site).href : '';
+---
+{activa && (
+  <section class="suscripcion">
+    <div class="suscripcion-inner">
+      {img && (
+        <div class="suscripcion-imagen">
+          <img src={img} alt="" loading="lazy" />
+        </div>
+      )}
+      <div class="suscripcion-texto">
+        <h2>{SUSCRIPCION.titulo}</h2>
+        <p>{SUSCRIPCION.texto}</p>
+        <form class="suscripcion-form" action={action} method="POST">
+          <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" aria-label="Tu correo electrónico" />
+          <button type="submit">{SUSCRIPCION.boton}</button>
+          <input type="hidden" name="_subject" value="Nueva suscripción a Senda Reformada" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          {gracias && <input type="hidden" name="_next" value={gracias} />}
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        </form>
+      </div>
+    </div>
+  </section>
+)}

@@ -32,6 +32,26 @@ export const SITE = {
 export const CLOUDFLARE_TOKEN = '9e5d5d1b0a8445e08eeab8fb8679db3f';
 
 // =====================================================================
+//  SUSCRIPCIÓN POR CORREO (sección al pie de las entradas)
+//  Usa FormSubmit (gratis, sin crear cuenta): las suscripciones te
+//  llegan al correo que pongas abajo. La PRIMERA vez, FormSubmit te
+//  enviará un correo para confirmar que querés recibirlas.
+//  - correo: dónde recibís las suscripciones.
+//  - imagen: archivo en public/imagenes/ que acompaña la sección.
+//  Para desactivar la sección, poné  activa: false.
+// =====================================================================
+export const SUSCRIPCION = {
+  activa: true,
+  titulo: 'Recibe cada publicación en tu correo',
+  texto:
+    'Suscríbete y te avisamos cuando haya un nuevo devocional o artículo. ' +
+    'Sin spam; puedes darte de baja cuando quieras.',
+  boton: 'Suscribirme',
+  correo: 'franciscov1988@gmail.com',
+  imagen: 'suscripcion.svg',
+};
+
+// =====================================================================
 //  REDES SOCIALES Y CANALES
 //  Para quitar una red, borra su línea. Para agregar otra, copia una
 //  línea y cambia los datos. El ícono se elige con "icono".

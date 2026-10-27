@@ -2,8 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TarjetaEntrada from '../components/TarjetaEntrada.astro';
 import Frases from '../components/Frases.astro';
+import Suscripcion from '../components/Suscripcion.astro';
 import { SITE, SECCIONES } from '../data/site.js';
-import { todasLasEntradas, aSlug, rutaImagen, formatearFecha, tematicasDeSeccion } from '../data/contenido.js';
+import { todasLasEntradas, entradasDestacadas, aSlug, rutaImagen, formatearFecha, tematicasDeSeccion } from '../data/contenido.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const u = (ruta) => `${base}${ruta}`;
@@ -12,6 +13,7 @@ const todas = await todasLasEntradas();
 const destacado = todas[0] || null;
 const resto = todas.slice(1, 7);
 const reciente = todas.slice(0, 6);
+const masLeidos = await entradasDestacadas(5);
 
 // Temáticas de todas las secciones para la columna lateral
 const temasPorSeccion = await Promise.all(
@@ -87,6 +89,22 @@ const autorDestacado = destacado ? (destacado.data.author || SITE.autor) : '';
       </div>
 
       <aside class="lateral">
+        {masLeidos.length > 0 && (
+          <div class="modulo-lateral">
+            <h3>Más leídos</h3>
+            <ol class="lista-reciente">
+              {masLeidos.map((e) => (
+                <li>
+                  <a href={u(e.url)}>
+                    {e.data.title}
+                    <span class="mini-fecha">{formatearFecha(e.data.pubDate)}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
         <div class="modulo-lateral">
           <h3>Lo más reciente</h3>
           {reciente.length > 0 ? (
@@ -120,4 +138,6 @@ const autorDestacado = destacado ? (destacado.data.author || SITE.autor) : '';
       </aside>
     </div>
   </div>
+
+  <Suscripcion />
 </BaseLayout>

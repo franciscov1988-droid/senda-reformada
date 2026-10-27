@@ -69,6 +69,34 @@ export async function tematicasDeSeccion(seccionId) {
   return [...mapa.values()].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 }
 
+// Entradas destacadas ("Más leídos"): las marcadas con destacado: true,
+// ordenadas por ordenDestacado (menor primero) y luego por fecha.
+// Si no hay ninguna marcada, usa las más recientes como respaldo.
+export async function entradasDestacadas(limite = 5) {
+  const todas = await todasLasEntradas();
+  const marcadas = todas
+    .filter((e) => e.data.destacado)
+    .sort((a, b) => {
+      const oa = a.data.ordenDestacado ?? 999;
+      const ob = b.data.ordenDestacado ?? 999;
+      if (oa !== ob) return oa - ob;
+      return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    });
+  const base = marcadas.length > 0 ? marcadas : todas;
+  return base.slice(0, limite);
+}
+
+// Quita el formato Markdown de un texto para el buscador.
+export function textoPlano(markdown = '') {
+  return markdown
+    .replace(/```[\s\S]*?```/g, ' ')      // bloques de código
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ') // imágenes
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // enlaces -> texto
+    .replace(/[#>*_`~-]/g, ' ')            // símbolos de markdown
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 // Formatea una fecha en español: "11 de octubre de 2026"
 export function formatearFecha(fecha) {
   return new Intl.DateTimeFormat('es-HN', {

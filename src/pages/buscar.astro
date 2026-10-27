@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout titulo="Buscar" descripcion="Busca artículos y devocionales en Senda Reformada.">
+  <div class="contenedor seccion seccion-estrecha">
+    <div class="encabezado-pagina">
+      <h1 style="margin-top:0">Buscar</h1>
+      <p class="subtitulo">Escribe una palabra y te muestro dónde aparece.</p>
+    </div>
+
+    <form id="form-buscar" class="buscador-form" role="search" onsubmit="return false">
+      <svg class="buscador-lupa" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <input id="buscar-input" type="search" placeholder="Ej. gracia, oración, Romanos…"
+             autocomplete="off" aria-label="Buscar" />
+    </form>
+
+    <p id="buscar-estado" class="buscar-estado"></p>
+    <div id="buscar-resultados" class="lista-entradas"></div>
+  </div>
+
+  <script define:vars={{ indexUrl: `${base}/buscar-index.json` }}>
+    (function () {
+      const input = document.getElementById('buscar-input');
+      const cont = document.getElementById('buscar-resultados');
+      const estado = document.getElementById('buscar-estado');
+      let datos = null;
+
+      const norm = (s) => (s || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[̀-ͯ]/g, '');
+
+      const cargar = async () => {
+        if (datos) return datos;
+        const r = await fetch(indexUrl);
+        datos = await r.json();
+        datos.forEach((d) => {
+          d._b = norm(`${d.titulo} ${d.resumen} ${d.categoria} ${d.seccion} ${d.texto}`);
+        });
+        return datos;
+      };
+
+      const escapar = (s) => (s || '').replace(/[&<>"]/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+      const render = (items, q) => {
+        if (!q) { cont.innerHTML = ''; estado.textContent = ''; return; }
+        if (items.length === 0) {
+          cont.innerHTML = '';
+          estado.textContent = `No se encontraron resultados para “${q}”.`;
+          return;
+        }
+        estado.textContent = `${items.length} ${items.length === 1 ? 'resultado' : 'resultados'} para “${q}”.`;
+        cont.innerHTML = items.map((d) => `
+          <article class="tarjeta">
+            <div class="tarjeta-cuerpo">
+              <div class="meta">
+                <span class="chip">${escapar(d.categoria)}</span>
+                <span class="seccion-etiqueta">${escapar(d.seccion)}</span>
+              </div>
+              <h3><a href="${d.url}">${escapar(d.titulo)}</a></h3>
+              ${d.resumen ? `<p class="resumen">${escapar(d.resumen)}</p>` : ''}
+            </div>
+          </article>`).join('');
+      };
+
+      const buscar = async () => {
+        const q = input.value.trim();
+        const qn = norm(q);
+        if (!qn) { render([], ''); return; }
+        estado.textContent = 'Buscando…';
+        const lista = await cargar();
+        // cada palabra debe aparecer (búsqueda tipo "y")
+        const palabras = qn.split(/\s+/).filter(Boolean);
+        const res = lista.filter((d) => palabras.every((p) => d._b.includes(p)));
+        render(res, q);
+      };
+
+      let t;
+      input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(buscar, 150); });
+
+      // Si llega ?q=... en la URL, prellenar y buscar.
+      const q0 = new URLSearchParams(location.search).get('q');
+      if (q0) { input.value = q0; buscar(); }
+      input.focus();
+    })();
+  </script>
+</BaseLayout>
