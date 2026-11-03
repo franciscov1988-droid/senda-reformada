@@ -1,6 +1,12 @@
+# Configuración de Pages CMS para Senda Reformada
+# Panel de edición: https://app.pagescms.org
+# ----------------------------------------------------------------------
+# Las imágenes se guardan en public/imagenes/ y en el contenido se
+# escriben con la ruta /senda-reformada/imagenes/... (así las lee el sitio).
+
 media:
   input: public/imagenes
-  output: /senda-reformada/imagenes
+  output: /imagenes
 
 content:
   - name: frases
@@ -51,13 +57,54 @@ content:
         label: Descripción de la imagen (opcional)
         type: string
       - name: author
+        label: Autor (opcional, si se deja vacío usa el autor por defecto)
+        type: string
+      - name: draft
+        label: Borrador (actívalo para NO publicar todavía)
+        type: boolean
+      - name: destacado
+        label: Destacado (aparece en «Más leídos»)
+        type: boolean
+      - name: body
+        label: Contenido
+        type: rich-text
+
+  - name: libros
+    label: Libros (capítulos)
+    type: collection
+    path: src/content/libros
+    filename: '{fields.title}.md'
+    view:
+      fields: [title, libro, capitulo]
+    fields:
+      - name: title
+        label: Título del capítulo
+        type: string
+        required: true
+      - name: libro
+        label: Libro al que pertenece (escribe siempre igual el mismo libro)
+        type: string
+        required: true
+      - name: capitulo
+        label: Número de capítulo (define el orden)
+        type: number
+      - name: description
+        label: Resumen corto (en el capítulo 1 describe todo el libro)
+        type: text
+      - name: imagen
+        label: Portada (ponla en el capítulo 1; sirve de portada del libro)
+        type: image
+      - name: imagenAlt
+        label: Descripción de la imagen (opcional)
+        type: string
+      - name: author
         label: Autor (opcional)
         type: string
       - name: draft
         label: Borrador (actívalo para NO publicar todavía)
         type: boolean
       - name: body
-        label: Contenido
+        label: Contenido del capítulo
         type: rich-text
 
   - name: articulos
@@ -90,10 +137,13 @@ content:
         label: Descripción de la imagen (opcional)
         type: string
       - name: author
-        label: Autor (opcional)
+        label: Autor (opcional, si se deja vacío usa el autor por defecto)
         type: string
       - name: draft
         label: Borrador (actívalo para NO publicar todavía)
+        type: boolean
+      - name: destacado
+        label: Destacado (aparece en «Más leídos»)
         type: boolean
       - name: body
         label: Contenido
