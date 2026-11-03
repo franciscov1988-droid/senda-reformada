@@ -86,6 +86,59 @@ export async function entradasDestacadas(limite = 5) {
   return base.slice(0, limite);
 }
 
+// =====================================================================
+//  LIBROS — cada entrada es un CAPÍTULO; se agrupan por el campo "libro"
+//  y se ordenan por "capitulo".
+// =====================================================================
+
+// Ordena capítulos: por número de capítulo (ascendente); los que no
+// tienen número van al final; en empate, por título.
+function ordenarCapitulos(a, b) {
+  const ca = a.data.capitulo ?? 9999;
+  const cb = b.data.capitulo ?? 9999;
+  if (ca !== cb) return ca - cb;
+  return a.data.title.localeCompare(b.data.title, 'es');
+}
+
+// Devuelve todos los capítulos publicados, con su libro (slug) y URL.
+export async function capitulosLibros() {
+  const entradas = await getCollection('libros', ({ data }) => !data.draft);
+  return entradas.map((e) => ({
+    ...e,
+    seccion: 'libros',
+    libroSlug: aSlug(e.data.libro),
+    url: `/libros/${aSlug(e.data.libro)}/${e.id}`,
+  }));
+}
+
+// Agrupa los capítulos por libro. Devuelve una lista de libros, cada uno
+// con: nombre, slug, portada, imagenAlt, descripcion, total y capitulos
+// (ya ordenados). Los libros se ordenan alfabéticamente.
+export async function librosAgrupados() {
+  const caps = await capitulosLibros();
+  const mapa = new Map();
+  for (const c of caps) {
+    const slug = c.libroSlug;
+    if (!mapa.has(slug)) {
+      mapa.set(slug, { nombre: c.data.libro, slug, capitulos: [] });
+    }
+    mapa.get(slug).capitulos.push(c);
+  }
+  const libros = [...mapa.values()].map((libro) => {
+    const capitulos = libro.capitulos.sort(ordenarCapitulos);
+    const conPortada = capitulos.find((c) => c.data.imagen) || null;
+    return {
+      ...libro,
+      capitulos,
+      portada: conPortada ? rutaImagen(conPortada.data.imagen) : null,
+      imagenAlt: conPortada?.data.imagenAlt || libro.nombre,
+      descripcion: capitulos[0]?.data.description || '',
+      total: capitulos.length,
+    };
+  });
+  return libros.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+}
+
 // Quita el formato Markdown de un texto para el buscador.
 export function textoPlano(markdown = '') {
   return markdown

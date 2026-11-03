@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Suscripcion from '../../../components/Suscripcion.astro';
+import { librosAgrupados, rutaImagen } from '../../../data/contenido.js';
+import { SITE } from '../../../data/site.js';
+
+export async function getStaticPaths() {
+  const libros = await librosAgrupados();
+  const reales = await getCollection('libros');
+  const paths = [];
+  for (const l of libros) {
+    l.capitulos.forEach((c, i) => {
+      const anterior = l.capitulos[i - 1];
+      const siguiente = l.capitulos[i + 1];
+      paths.push({
+        params: { libro: l.slug, capitulo: c.id },
+        props: {
+          libro: { nombre: l.nombre, slug: l.slug, total: l.total },
+          entrada: reales.find((r) => r.id === c.id),
+          meta: c.data,
+          anterior: anterior ? { title: anterior.data.title, url: anterior.url } : null,
+          siguiente: siguiente ? { title: siguiente.data.title, url: siguiente.url } : null,
+          posicion: i + 1,
+        },
+      });
+    });
+  }
+  return paths;
+}
+
+const { libro, entrada, meta, anterior, siguiente, posicion } = Astro.props;
+const { Content } = await render(entrada);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+const autor = meta.author || SITE.autor;
+const portada = rutaImagen(meta.imagen);
+---
+<BaseLayout titulo={`${meta.title} · ${libro.nombre}`} descripcion={meta.description} imagen={portada} tipo="article">
+  <article class="articulo">
+    <div class="articulo-cabecera">
+      <p class="migas">
+        <a href={u('/')}>Inicio</a> ·
+        <a href={u('/libros')}>Libros</a> ·
+        <a href={u(`/libros/${libro.slug}`)}>{libro.nombre}</a>
+      </p>
+      <a class="chip" href={u(`/libros/${libro.slug}`)}>
+        {meta.capitulo != null ? `Capítulo ${meta.capitulo}` : libro.nombre}
+      </a>
+      <h1>{meta.title}</h1>
+      <div class="meta">
+        <span>{libro.nombre}</span>
+        <span>·</span>
+        <span>Capítulo {posicion} de {libro.total}</span>
+      </div>
+    </div>
+
+    {portada && (
+      <figure class="portada-articulo">
+        <img src={portada} alt={meta.imagenAlt || meta.title} />
+        {meta.imagenAlt && <figcaption>{meta.imagenAlt}</figcaption>}
+      </figure>
+    )}
+
+    <div class="prosa">
+      <Content />
+    </div>
+
+    <nav class="cap-nav" aria-label="Navegación entre capítulos">
+      {anterior
+        ? <a class="cap-nav-enlace cap-nav-prev" href={u(anterior.url)}>
+            <span class="cap-nav-dir">← Anterior</span>
+            <span class="cap-nav-titulo">{anterior.title}</span>
+          </a>
+        : <span class="cap-nav-enlace cap-nav-vacio"></span>}
+      {siguiente
+        ? <a class="cap-nav-enlace cap-nav-next" href={u(siguiente.url)}>
+            <span class="cap-nav-dir">Siguiente →</span>
+            <span class="cap-nav-titulo">{siguiente.title}</span>
+          </a>
+        : <span class="cap-nav-enlace cap-nav-vacio"></span>}
+    </nav>
+
+    <a class="volver" href={u(`/libros/${libro.slug}`)}>← Volver al índice de {libro.nombre}</a>
+  </article>
+
+  <Suscripcion />
+</BaseLayout>

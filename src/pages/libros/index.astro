@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { librosAgrupados } from '../../data/contenido.js';
+import { LIBROS, SITE } from '../../data/site.js';
+
+const libros = await librosAgrupados();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+---
+<BaseLayout titulo={LIBROS.nombre} descripcion={LIBROS.descripcion}>
+  <div class="contenedor seccion">
+    <div class="encabezado-pagina">
+      <h1 style="margin-top:0">{LIBROS.nombre}</h1>
+      <p class="subtitulo">{LIBROS.descripcion}</p>
+    </div>
+
+    {libros.length > 0 ? (
+      <div class="estante">
+        {libros.map((l) => (
+          <a class="libro-tarjeta" href={u(`/libros/${l.slug}`)}>
+            <div class="libro-portada">
+              {l.portada
+                ? <img src={l.portada} alt={l.imagenAlt} loading="lazy" />
+                : <img src={u('/imagenes/logo.jpg')} alt={SITE.nombre} class="libro-portada-logo" />}
+            </div>
+            <div class="libro-info">
+              <h2>{l.nombre}</h2>
+              {l.descripcion && <p class="resumen">{l.descripcion}</p>}
+              <span class="libro-conteo">{l.total} {l.total === 1 ? 'capítulo' : 'capítulos'}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="vacio">Aún no hay libros publicados. ¡Vuelve pronto!</p>
+    )}
+  </div>
+</BaseLayout>

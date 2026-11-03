@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { librosAgrupados, formatearFecha } from '../../../data/contenido.js';
+
+export async function getStaticPaths() {
+  const libros = await librosAgrupados();
+  return libros.map((l) => ({ params: { libro: l.slug }, props: { libro: l } }));
+}
+
+const { libro } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+---
+<BaseLayout titulo={libro.nombre} descripcion={libro.descripcion} imagen={libro.portada} tipo="book">
+  <div class="contenedor seccion">
+    <p class="migas">
+      <a href={u('/')}>Inicio</a> ·
+      <a href={u('/libros')}>Libros</a>
+    </p>
+
+    <div class="libro-cabecera">
+      <div class="libro-cabecera-portada">
+        {libro.portada
+          ? <img src={libro.portada} alt={libro.imagenAlt} />
+          : <div class="libro-portada-vacia">{libro.nombre}</div>}
+      </div>
+      <div class="libro-cabecera-texto">
+        <span class="chip">Libro</span>
+        <h1>{libro.nombre}</h1>
+        {libro.descripcion && <p class="subtitulo">{libro.descripcion}</p>}
+        <p class="libro-conteo">{libro.total} {libro.total === 1 ? 'capítulo' : 'capítulos'}</p>
+        {libro.capitulos[0] && (
+          <a class="boton boton-primario" href={u(libro.capitulos[0].url)}>Empezar a leer →</a>
+        )}
+      </div>
+    </div>
+
+    <ol class="capitulos-toc">
+      {libro.capitulos.map((c) => (
+        <li>
+          <a href={u(c.url)}>
+            {c.data.capitulo != null && <span class="cap-num">{c.data.capitulo}</span>}
+            <span class="cap-texto">
+              <span class="cap-titulo">{c.data.title}</span>
+              {c.data.description && <span class="cap-resumen">{c.data.description}</span>}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</BaseLayout>

@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { textoPlano } from '../data/contenido.js';
+import { textoPlano, aSlug } from '../data/contenido.js';
 import { SECCIONES } from '../data/site.js';
 
 // Genera /buscar-index.json con todo el contenido, que el buscador
@@ -23,6 +23,19 @@ export async function GET() {
         texto: textoPlano(e.body || '').slice(0, 1200),
       });
     }
+  }
+
+  // Libros: cada capítulo es un resultado del buscador.
+  const capitulos = await getCollection('libros', ({ data }) => !data.draft);
+  for (const e of capitulos) {
+    items.push({
+      titulo: e.data.title,
+      resumen: e.data.description || '',
+      categoria: e.data.libro,
+      seccion: 'Libros',
+      url: `${base}/libros/${aSlug(e.data.libro)}/${e.id}`,
+      texto: textoPlano(e.body || '').slice(0, 1200),
+    });
   }
 
   // Más recientes primero no importa aquí; el buscador ordena por relevancia.

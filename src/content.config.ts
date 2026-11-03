@@ -33,4 +33,27 @@ const articulos = defineCollection({
   schema: esquema,
 });
 
-export const collections = { devocionales, articulos };
+// Esquema para LIBROS: cada entrada es un CAPÍTULO.
+// - "libro" es el nombre del libro al que pertenece (agrupa los capítulos).
+// - "capitulo" es el número que define el ORDEN de lectura.
+// La portada y la descripción del libro se toman del capítulo de menor
+// número que tenga imagen / descripción (normalmente el capítulo 1).
+const esquemaLibro = z.object({
+  title: z.string(), // título del capítulo
+  libro: z.string(), // nombre del libro (agrupa los capítulos)
+  capitulo: z.coerce.number().optional(), // número de capítulo (orden)
+  description: z.string().optional().default(''),
+  pubDate: z.coerce.date().optional(),
+  author: z.string().optional(),
+  draft: z.boolean().optional().default(false),
+  imagen: z.string().optional(),
+  imagenAlt: z.string().optional().default(''),
+  destacado: z.boolean().optional().default(false),
+});
+
+const libros = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/libros' }),
+  schema: esquemaLibro,
+});
+
+export const collections = { devocionales, articulos, libros };

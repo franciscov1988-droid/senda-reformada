@@ -105,3 +105,14 @@ export const SECCIONES = [
     descripcion: 'Doctrina, estudios bíblicos y reflexiones a profundidad.',
   },
 ];
+
+// =====================================================================
+//  SECCIÓN LIBROS
+//  Es una sección aparte: cada libro reúne sus capítulos en orden.
+//  Los libros NO se definen aquí; se crean solos a partir del campo
+//  "libro" de cada capítulo (como las temáticas).
+// =====================================================================
+export const LIBROS = {
+  nombre: 'Libros',
+  descripcion: 'Obras publicadas por capítulos, para leer en orden.',
+};
