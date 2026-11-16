@@ -1,7 +1,7 @@
 ---
 title: La rama no se riega sola
 pubDate: 2026-11-16
-categoria: Alma, sufrimiento, permaneced en Dios
+categoria: Alma
 description: el alma no se cura mirándose. Se cura uniéndose. Una iglesia sana
   no supone que usted llega a ella para ser arreglado, sino para ser injertado;
   no promete devolverle la vida que tenía, sino darle una que no tenía. Y esa
