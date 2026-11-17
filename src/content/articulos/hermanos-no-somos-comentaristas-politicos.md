@@ -1,0 +1,48 @@
+---
+title: Hermanos, no somos comentaristas políticos
+pubDate: 2026-11-16
+categoria: politica
+description: Podemos ser conocidos por ofrecer comentarios políticos
+  «proféticos», o podemos ser conocidos por un ministerio del evangelio centrado
+  en la iglesia, textualmente cuidadoso, bíblicamente rico y teológicamente
+  profundo.
+imagen: /imagenes/pexels-omar-ramadan-1739260-20105306.jpg
+author: Kevin DeYoung
+draft: false
+destacado: false
+---
+> *Podemos ser conocidos por ofrecer comentarios políticos «proféticos», o podemos ser conocidos por un ministerio del evangelio centrado en la iglesia, textualmente cuidadoso, bíblicamente rico y teológicamente profundo.*
+
+Cuando comencé en el ministerio hace 23 años, me fue de gran ayuda el libro de John Piper *Hermanos, no somos profesionales*. Todo en mi interior resonó con el llamado de Piper a que los pastores fueran estudiantes serios de la Biblia y evitaran los modelos ministeriales basados en trucos, entretenimiento y un intento desesperado por parecer relevantes ante el mundo. Si hay algún hombre joven en el mismo lugar en el que yo estaba hace dos décadas —sincero, entusiasta e ignorante de todo tipo de cosas que ni siquiera sabes que ignoras—, permíteme implorarte como un pastor ahora de mediana edad: **«Hermanos, no somos profesionales, y tampoco somos comentaristas políticos»**.
+
+*«Pero Kevin, ¿acaso no es todo político?»* En cierto sentido, sí.
+
+*«¿Estás diciendo, entonces, que los pastores deben guardar silencio sobre los temas más apremiantes de nuestros días?»* No.
+
+Por supuesto, los pastores deben aplicar la verdad bíblica a las grandes preguntas de nuestros días. Pero centrémonos en las *grandes* preguntas: las preguntas que la Biblia pretende responder, las preguntas con las que los Padres de la Iglesia, los escolásticos medievales, los reformadores magisteriales, los puritanos y las mejores mentes cristianas de los últimos trescientos años pueden ayudarnos. Estas preguntas no suelen ser las generadas por el ciclo de noticias de 24 horas ni las agitadas por el algoritmo de las redes sociales. Sospecho que a la mayoría de nosotros nos daría vergüenza volver atrás y revisar nuestras predicciones y opiniones sobre las noticias de hace cinco años, considerando lo que no sabíamos en ese momento y lo pasajera que resulta ser casi cualquier «noticia de última hora».
+
+No me malinterpretes: necesitamos algunos cristianos (aunque, sin duda, no tantos como tenemos ahora) que participen en la vorágine del comentario cultural, tal como necesitamos cristianos en cada área no pecaminosa de la actividad humana. El análisis y comentario político es un llamado legítimo. Simplemente no es el llamado del pastor. El hombre que comenta constantemente sobre las cosas de las que «todo el mundo está hablando» casi con seguridad *no* está hablando de las cosas de las que la Biblia está más interesada en hablar. Esa palabra, «constante», es importante. Se necesita sabiduría para saber cuándo puede ser necesario entrar en la contienda, pero no necesitamos pastores que parezcan una versión barata del *Daily Wire* o del *New York Times*.
+
+## No diluyas tu autoridad
+
+Los pastores no estamos llamados a comentar sobre todo, ni estamos equipados para hacerlo. Hermanos, no debemos lanzarnos a temas sobre los cuales no tenemos ni el derecho ni la experiencia para hablar como ministros del evangelio. Antes de publicar tu análisis instantáneo sobre la controversia del día, pregúntate: *¿Puedo decir lo que estoy a punto de decir en virtud de mi formación como ministro o de mi experiencia ganada con esfuerzo en algún área relacionada?* Sí, Cristo es Señor sobre todo. Sí, no hay ni una sola pulgada cuadrada en toda la creación sobre la cual Cristo no exclame: «¡Esto es mío!». Pero, compañero pastor, tú y yo no estamos calificados para hablar sobre todas esas pulgadas cuadradas sobre las cuales reina Cristo.
+
+Confieso que me deja perplejo ver a amigos y conocidos en el ministerio —tanto a mi «izquierda» como a mi «derecha»— gastando su tiempo, su energía y su autoridad ofreciendo opiniones impulsivas sobre todo lo que existe bajo el sol y descendiendo a peleas de comida en redes sociales que guardan un parecido sorprendente con las «palabrerías profanas y vacías» que conducen a la gente cada vez más a la impiedad (2 Timoteo 2:16). Hermanos, debemos evitar firmemente las discusiones necias e ignorantes (2 Timoteo 2:23). No es la sumisión al espíritu de la época lo que exige que «el siervo del Señor no debe ser rencilloso» (2 Timoteo 2:24), sino el mandato de la Sagrada Escritura.
+
+Y, francamente, la mayoría de los pastores no tienen nada particularmente único o perspicaz que decir sobre política. Gran parte de lo que se llama «hablar proféticamente» o aplicar el señorío de Cristo a toda la vida equivale a poco más que críticas improvisadas y argumentos reciclados. Si sentimos la necesidad de decir algo sobre lo que sale en las noticias, bajemos el ritmo, desconectémonos, leamos ampliamente, perdámonos en algunos libros antiguos, dediquémonos a meses o años de reflexión, y entonces tal vez tengamos algo que valga la pena decir; algo que no estén diciendo ya cien voces parlanchinas.
+
+Solo en raras ocasiones valdrá la pena que los pastores opinen de inmediato sobre algún asunto político (aparte de elevar muchas cosas a Dios en nuestras oraciones públicas y privadas). No me arrepiento de intentar abordar temas como el aborto, el transgenerismo, la raza o la homosexualidad, incluso si pueden llamarse temas «políticos». Sí me arrepiento de las veces en que salté demasiado rápido al ciclo de noticias u ofrecí mi opinión con demasiada soltura sobre políticos individuales, aunque solo sea porque una vez que te estableces como «el tipo que comenta sobre las cosas todo el tiempo», la gente puede preguntarse razonablemente por qué comentas sobre algunas cosas y algunas personas y no sobre otras.
+
+Si le damos a la gente comentarios políticos incesantes y escaramuzas digitales, esperarán más de lo mismo en el futuro. Y si comentar sobre un tema dentro de tres meses significa que llegamos demasiado tarde, entonces no es un tema que merezca nuestras limitadas horas y atención. Como lo expresó el teólogo del antiguo Princeton, J.A. Alexander: «Los grandes temas de la verdad religiosa bastan para ocupar más tiempo del que el predicador puede conseguir. El arte de gobernar es una ciencia en sí misma. Si un predicador sobresale en ella, debe hacerlo sacrificando algunas de sus horas sagradas» (*Thoughts on Preaching*, p. 30).
+
+Cuando los pastores deciden volverse más abiertamente políticos, casi nunca termina siendo un mérito para su perspicacia y prudencia. Los pastores de la izquierda que hablaron «valientemente» sobre los males del privilegio blanco o sobre los protocolos del COVID como una prueba de fuego del amor al prójimo demostraron ser demasiado dogmáticos y hablaron con un tono demasiado cercano al evangelio sobre asuntos debatibles. Puede que hayan sido aplaudidos por sus amigos y por ciertos sectores de internet, pero desperdiciaron su autoridad e hicieron más difícil que la gente los tomara en serio como pensadores y como líderes cristianos. A mis amigos combativos de la derecha: es probable que cometan los mismos errores si repiten con confianza lo que otra cámara de eco quiere que digan.
+
+## Haz aquello para lo que fuiste capacitado
+
+Está bien que los pastores tengan muchos intereses. Después de todo, a mí me gusta hablar de la vida, de libros y de todo (lo que a veces incluye eventos actuales y política). Pero las cosas que más me apasionan —y quiero que sea manifiestamente obvio que estas son las cosas que más me apasionan— son enseñar teología e historia de la iglesia, predicar la Biblia cada domingo y ser un pastor de una iglesia local semana tras semana. Si alguna vez esas dejaran de ser mis verdaderas prioridades —si lo que realmente quisiera hacer fuera tener un ministerio de pódcast, o un ministerio de conferencias itinerantes, o un ministerio de acción política, o un ministerio en un centro de estudios conservador—, entonces debería renunciar a este trabajo e irme a hacer ese otro. Hay muchos trabajos importantes en el mundo y muchas maneras en que podemos servir al Señor y a su pueblo. Pero si eres pastor, entonces sé pastor. Haz aquello para lo que fuiste capacitado: estudia la Biblia, predica sermones, ama a las personas y lidera tu iglesia.
+
+Sí, podemos tener amores ordenados. No es todo o nada. Podemos participar en muchas cosas a la vez, pero Alexander tiene razón: «Es impropio que un ministro de Cristo sea conocido principalmente por obras ajenas a la línea de su llamado, por muy valiosas que sean en sí mismas». Cuando se trata de nuestro ministerio público —aquello por lo que somos conocidos y lo que la gente piensa cuando piensa en nuestra voz en la esfera pública—, el comentario político es prácticamente un juego de suma cero. Podemos ser conocidos por comentarios políticos «proféticos» o podemos ser conocidos por un ministerio del evangelio centrado en la iglesia, textualmente cuidadoso, bíblicamente rico y teológicamente profundo.
+
+Hermanos, podemos ser comentaristas o podemos ser pastores, pero probablemente no podamos ser ambas cosas.
+
+*Kevin DeYoung es el pastor principal de Christ Covenant Church (PCA) en Matthews, Carolina del Norte, y profesor asociado de teología sistemática en el Reformed Theological Seminary.*
