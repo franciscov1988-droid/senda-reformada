@@ -19,6 +19,11 @@
       "nombre": "desiring god",
       "url": "https://www.desiringgod.org/",
       "descripcion": "Artículos, devocionales y libros "
+    },
+    {
+      "nombre": "clearly reformed",
+      "url": "https://clearlyreformed.org/",
+      "descripcion": "Articulos Reformados"
     }
   ]
 }
