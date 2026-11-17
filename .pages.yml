@@ -27,6 +27,28 @@ content:
             label: Autor o referencia (ej. Salmo 46:10)
             type: string
 
+  - name: recomendados
+    label: Páginas recomendadas (columna lateral)
+    type: file
+    path: src/data/recomendados.json
+    fields:
+      - name: paginas
+        label: Páginas
+        type: object
+        list: true
+        fields:
+          - name: nombre
+            label: Nombre del sitio
+            type: string
+            required: true
+          - name: url
+            label: Enlace (https://...)
+            type: string
+            required: true
+          - name: descripcion
+            label: Descripción corta (opcional)
+            type: string
+
   - name: devocionales
     label: Devocionales
     type: collection
@@ -58,6 +80,12 @@ content:
         type: string
       - name: author
         label: Autor (opcional, si se deja vacío usa el autor por defecto)
+        type: string
+      - name: fuente
+        label: Fuente (de dónde se obtuvo; déjalo vacío si es original)
+        type: string
+      - name: fuenteUrl
+        label: Enlace de la fuente (opcional, https://...)
         type: string
       - name: draft
         label: Borrador (actívalo para NO publicar todavía)
@@ -100,6 +128,12 @@ content:
       - name: author
         label: Autor (opcional)
         type: string
+      - name: fuente
+        label: Fuente (de dónde se obtuvo; déjalo vacío si es original)
+        type: string
+      - name: fuenteUrl
+        label: Enlace de la fuente (opcional, https://...)
+        type: string
       - name: draft
         label: Borrador (actívalo para NO publicar todavía)
         type: boolean
@@ -138,6 +172,12 @@ content:
         type: string
       - name: author
         label: Autor (opcional, si se deja vacío usa el autor por defecto)
+        type: string
+      - name: fuente
+        label: Fuente (de dónde se obtuvo; déjalo vacío si es original)
+        type: string
+      - name: fuenteUrl
+        label: Enlace de la fuente (opcional, https://...)
         type: string
       - name: draft
         label: Borrador (actívalo para NO publicar todavía)

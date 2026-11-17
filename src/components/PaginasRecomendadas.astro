@@ -1,0 +1,30 @@
+---
+// Módulo lateral "Páginas recomendadas".
+// Los enlaces se editan en src/data/recomendados.json (también desde el
+// panel Pages CMS). Si la lista está vacía, el módulo no se muestra.
+import datos from '../data/recomendados.json';
+const paginas = Array.isArray(datos) ? datos : (datos.paginas || []);
+---
+{paginas.length > 0 && (
+  <div class="modulo-lateral">
+    <h3>Páginas recomendadas</h3>
+    <ul class="recomendadas">
+      {paginas.map((p) => (
+        <li>
+          <a href={p.url} target="_blank" rel="noopener noreferrer">
+            <span class="recomendada-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M10 14L21 3M21 3h-6M21 3v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="recomendada-texto">
+              <span class="recomendada-nombre">{p.nombre}</span>
+              {p.descripcion && <span class="recomendada-desc">{p.descripcion}</span>}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

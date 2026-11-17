@@ -1,0 +1,23 @@
+---
+// Bloque "Fuente" al pie de una entrada: indica de dónde se obtuvo el
+// artículo. Se muestra solo si la entrada tiene "fuente" o "fuenteUrl".
+const { fuente, fuenteUrl } = Astro.props;
+const texto = fuente || fuenteUrl;
+const hay = Boolean(texto);
+---
+{hay && (
+  <aside class="fuente">
+    <span class="fuente-icono" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <p class="fuente-texto">
+      <span class="fuente-eti">Fuente</span>
+      {fuenteUrl
+        ? <a href={fuenteUrl} target="_blank" rel="noopener noreferrer">{texto}</a>
+        : <span>{texto}</span>}
+    </p>
+  </aside>
+)}

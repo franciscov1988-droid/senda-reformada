@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Suscripcion from '../../components/Suscripcion.astro';
+import Fuente from '../../components/Fuente.astro';
 import { formatearFecha, aSlug, rutaImagen } from '../../data/contenido.js';
 import { SITE } from '../../data/site.js';
 
@@ -44,6 +45,8 @@ const portada = rutaImagen(entrada.data.imagen);
     <div class="prosa">
       <Content />
     </div>
+
+    <Fuente fuente={entrada.data.fuente} fuenteUrl={entrada.data.fuenteUrl} />
 
     <a class="volver" href={u('/articulos')}>← Volver a Artículos</a>
   </article>

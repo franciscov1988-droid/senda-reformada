@@ -21,6 +21,10 @@ const esquema = z.object({
   destacado: z.boolean().optional().default(false),
   // Orden opcional dentro de los destacados (menor = primero).
   ordenDestacado: z.number().optional(),
+  // Fuente del artículo (de dónde se obtuvo). Opcional.
+  // "fuente" es el nombre a mostrar; "fuenteUrl" el enlace (opcional).
+  fuente: z.string().optional(),
+  fuenteUrl: z.string().optional(),
 });
 
 const devocionales = defineCollection({
@@ -49,6 +53,9 @@ const esquemaLibro = z.object({
   imagen: z.string().optional(),
   imagenAlt: z.string().optional().default(''),
   destacado: z.boolean().optional().default(false),
+  // Fuente del capítulo (de dónde se obtuvo). Opcional.
+  fuente: z.string().optional(),
+  fuenteUrl: z.string().optional(),
 });
 
 const libros = defineCollection({
