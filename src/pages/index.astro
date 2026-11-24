@@ -4,6 +4,7 @@ import TarjetaEntrada from '../components/TarjetaEntrada.astro';
 import Frases from '../components/Frases.astro';
 import Suscripcion from '../components/Suscripcion.astro';
 import PaginasRecomendadas from '../components/PaginasRecomendadas.astro';
+import Invitacion from '../components/Invitacion.astro';
 import { SITE, SECCIONES } from '../data/site.js';
 import { todasLasEntradas, entradasDestacadas, aSlug, rutaImagen, formatearFecha, tematicasDeSeccion, librosAgrupados } from '../data/contenido.js';
 
@@ -91,6 +92,8 @@ const autorDestacado = destacado ? (destacado.data.author || SITE.autor) : '';
       </div>
 
       <aside class="lateral">
+        <Invitacion />
+
         {masLeidos.length > 0 && (
           <div class="modulo-lateral">
             <h3>Más leídos</h3>

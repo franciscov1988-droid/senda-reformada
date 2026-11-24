@@ -52,6 +52,21 @@ export const SUSCRIPCION = {
 };
 
 // =====================================================================
+//  INVITACIÓN A CONGREGARSE (tarjeta en la columna lateral)
+//  Pequeño banner que invita a quienes no tienen iglesia. Para
+//  desactivarlo, poné  activa: false.  Podés cambiar el texto y el enlace.
+// =====================================================================
+export const INVITACION = {
+  activa: true,
+  titulo: '¿Eres de Tegucigalpa?',
+  texto:
+    'Si eres de Tegucigalpa, Honduras y no tienes una iglesia a la cual ' +
+    'congregarte, te invito a conocer esta congregación.',
+  boton: 'Conocer la iglesia',
+  url: 'https://www.ipresgs.com/',
+};
+
+// =====================================================================
 //  REDES SOCIALES Y CANALES
 //  Para quitar una red, borra su línea. Para agregar otra, copia una
 //  línea y cambia los datos. El ícono se elige con "icono".

@@ -668,3 +668,36 @@ a.chip:hover { color: var(--terracota-claro); }
 }
 .fuente-texto a { color: var(--terracota); font-weight: 600; text-decoration: none; }
 .fuente-texto a:hover { text-decoration: underline; }
+
+/* =====================================================================
+   INVITACIÓN A CONGREGARSE (tarjeta destacada en la columna lateral)
+   ===================================================================== */
+.invitacion {
+  background: linear-gradient(160deg, var(--salvia) 0%, #4a5742 100%);
+  color: var(--luz);
+  border-radius: 14px;
+  padding: 1.3rem 1.3rem 1.4rem;
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+.invitacion-icono {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 3rem; height: 3rem; margin-bottom: 0.6rem;
+  border-radius: 50%; background: rgba(255,255,255,0.15); color: var(--luz);
+}
+.invitacion-icono svg { width: 1.7rem; height: 1.7rem; }
+.invitacion h3 {
+  margin: 0 0 0.5rem; color: var(--luz);
+  font-family: var(--serif); font-size: 1.2rem; line-height: 1.25;
+}
+.invitacion p {
+  margin: 0 0 1rem; font-size: 0.92rem; line-height: 1.5;
+  color: rgba(255,255,255,0.92);
+}
+.invitacion-boton {
+  display: inline-block; padding: 0.55rem 1.2rem;
+  background: var(--terracota); color: #fff; font-family: var(--sans);
+  font-weight: 600; font-size: 0.9rem; border-radius: 999px;
+  text-decoration: none; transition: background 0.15s ease, transform 0.15s ease;
+}
+.invitacion-boton:hover { background: #8f4415; transform: translateY(-1px); }

@@ -1,0 +1,23 @@
+---
+// Tarjeta de invitación a congregarse (columna lateral).
+// Se configura en src/data/site.js (objeto INVITACION).
+import { INVITACION } from '../data/site.js';
+const inv = INVITACION || {};
+const mostrar = inv.activa && inv.url;
+---
+{mostrar && (
+  <div class="invitacion">
+    <span class="invitacion-icono" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 2l1.2 2.6L16 5.2l-1.2 2.6L16 10.4l-2.8.6L12 13.6l-1.2-2.6L8 10.4l1.2-2.6L8 5.2l2.8-.6L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M5 21v-7l7-4 7 4v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 21v-4h4v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    {inv.titulo && <h3>{inv.titulo}</h3>}
+    <p>{inv.texto}</p>
+    <a class="invitacion-boton" href={inv.url} target="_blank" rel="noopener noreferrer">
+      {inv.boton || 'Más información'} →
+    </a>
+  </div>
+)}
