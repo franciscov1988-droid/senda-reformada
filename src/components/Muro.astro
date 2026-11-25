@@ -1,0 +1,78 @@
+---
+// "Muro" de novedades al estilo Facebook (columna lateral).
+// Se editan en src/data/muro.json (también desde el panel Pages CMS).
+// Muestra SOLO las 5 publicaciones más recientes (por fecha); al agregar
+// una nueva, la más vieja deja de aparecer automáticamente.
+import datos from '../data/muro.json';
+import { SITE } from '../data/site.js';
+import { rutaImagen, formatearFecha } from '../data/contenido.js';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (ruta) => `${base}${ruta}`;
+
+// Saca el ID de un video de YouTube desde varias formas de enlace.
+function idYouTube(url = '') {
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+// ¿El enlace es de un video (para mostrar el botón de "play")?
+function esVideo(url = '') {
+  return /youtube\.com|youtu\.be|facebook\.com\/.*\/videos|fb\.watch|vimeo\.com|tiktok\.com/i.test(url);
+}
+
+const listaRaw = Array.isArray(datos) ? datos : (datos.posts || []);
+const posts = listaRaw
+  .filter((p) => p && (p.texto || p.imagen || p.url))
+  .map((p) => {
+    const yt = idYouTube(p.url || '');
+    const miniatura = rutaImagen(p.imagen) || (yt ? `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` : null);
+    const fechaObj = p.fecha ? new Date(`${p.fecha}T12:00:00`) : null;
+    return {
+      texto: p.texto || '',
+      url: p.url || '',
+      miniatura,
+      video: Boolean(p.url) && (esVideo(p.url) || Boolean(yt)),
+      fecha: fechaObj,
+      orden: fechaObj ? fechaObj.getTime() : 0,
+    };
+  })
+  .sort((a, b) => b.orden - a.orden)
+  .slice(0, 5);
+---
+{posts.length > 0 && (
+  <div class="muro">
+    <div class="muro-cabecera">
+      <img class="muro-avatar" src={u('/imagenes/logo.jpg')} alt={SITE.nombre} />
+      <div>
+        <span class="muro-nombre">{SITE.nombre}</span>
+        <span class="muro-sub">Novedades</span>
+      </div>
+    </div>
+
+    <div class="muro-posts">
+      {posts.map((p) => (
+        <article class="muro-post">
+          {p.fecha && <time class="muro-fecha">{formatearFecha(p.fecha)}</time>}
+          {p.texto && <p class="muro-texto">{p.texto}</p>}
+
+          {p.miniatura && (
+            p.url
+              ? <a class="muro-media" href={p.url} target="_blank" rel="noopener noreferrer">
+                  <img src={p.miniatura} alt={p.texto || 'Publicación'} loading="lazy" />
+                  {p.video && <span class="muro-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>}
+                </a>
+              : <div class="muro-media">
+                  <img src={p.miniatura} alt={p.texto || 'Publicación'} loading="lazy" />
+                </div>
+          )}
+
+          {p.url && !p.miniatura && (
+            <a class="muro-enlace" href={p.url} target="_blank" rel="noopener noreferrer">
+              {p.video ? 'Ver video' : 'Ver publicación'} →
+            </a>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+)}

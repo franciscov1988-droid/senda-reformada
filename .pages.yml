@@ -49,6 +49,30 @@ content:
             label: Descripción corta (opcional)
             type: string
 
+  - name: muro
+    label: Muro de novedades (columna lateral)
+    type: file
+    path: src/data/muro.json
+    fields:
+      - name: posts
+        label: Publicaciones (se muestran las 5 más recientes)
+        type: object
+        list: true
+        fields:
+          - name: fecha
+            label: Fecha (define el orden; la más nueva aparece primero)
+            type: date
+            required: true
+          - name: texto
+            label: Texto o frase (opcional)
+            type: text
+          - name: url
+            label: Enlace de video o publicación (opcional, https://...)
+            type: string
+          - name: imagen
+            label: Imagen o miniatura (opcional; en YouTube se toma sola)
+            type: image
+
   - name: devocionales
     label: Devocionales
     type: collection

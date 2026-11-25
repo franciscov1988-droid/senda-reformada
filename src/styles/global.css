@@ -701,3 +701,49 @@ a.chip:hover { color: var(--terracota-claro); }
   text-decoration: none; transition: background 0.15s ease, transform 0.15s ease;
 }
 .invitacion-boton:hover { background: #8f4415; transform: translateY(-1px); }
+
+/* =====================================================================
+   MURO DE NOVEDADES (ventana estilo Facebook, columna lateral)
+   ===================================================================== */
+.muro {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+.muro-cabecera {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--borde);
+  background: var(--crema-alt);
+}
+.muro-avatar { width: 2.3rem; height: 2.3rem; border-radius: 50%; object-fit: cover; }
+.muro-cabecera > div { display: flex; flex-direction: column; line-height: 1.2; }
+.muro-nombre { font-family: var(--sans); font-weight: 700; font-size: 0.95rem; }
+.muro-sub { font-size: 0.78rem; color: var(--tinta-suave); }
+.muro-posts { display: flex; flex-direction: column; }
+.muro-post { padding: 0.9rem 1rem; }
+.muro-post + .muro-post { border-top: 1px solid var(--borde); }
+.muro-fecha { display: block; font-size: 0.75rem; color: var(--tinta-suave); margin-bottom: 0.3rem; }
+.muro-texto { margin: 0 0 0.6rem; font-size: 0.92rem; line-height: 1.45; }
+.muro-post:last-child .muro-texto:last-child,
+.muro-post .muro-texto:last-child { margin-bottom: 0; }
+.muro-media {
+  position: relative; display: block; border-radius: 8px; overflow: hidden;
+  background: var(--crema-alt);
+}
+.muro-media img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+.muro-play {
+  position: absolute; inset: 0; margin: auto;
+  width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;
+  background: rgba(23,25,30,0.6); color: #fff; border-radius: 50%;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.muro-media:hover .muro-play { background: var(--terracota); transform: scale(1.05); }
+.muro-play svg { width: 1.5rem; height: 1.5rem; margin-left: 2px; }
+.muro-enlace {
+  display: inline-block; font-family: var(--sans); font-weight: 600; font-size: 0.88rem;
+  color: var(--terracota); text-decoration: none;
+}
+.muro-enlace:hover { text-decoration: underline; }
